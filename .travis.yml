@@ -1,0 +1,30 @@
+env: [ CARGO_TERM_COLOR=always ]
+jobs:
+  include:
+    - &build
+      stage: Reproducible builds
+
+      before_script: |
+        git submodule update --init
+        docker build -t bwt-builder - < bwt/scripts/builder.Dockerfile
+        [ "$IMAGE" == "builder" ] || docker build -t bwt-$IMAGE - < bwt/scripts/$IMAGE.Dockerfile
+
+      script:
+      - >
+        echo -e tr''avis_fo''ld:start:build\\nBuilding... &&
+        docker run -u `id -u` -v `pwd`:/usr/src/libbwt -w /usr/src/libbwt \
+                   --entrypoint scripts/build.sh bwt-$IMAGE &&
+        echo tr''avis_fol''d:end:build
+      - >
+        rm -rf dist/*/ &&
+        echo '-----BEGIN SHA256SUM-----' &&
+        (cd dist && sha256sum *) &&
+        echo
+
+
+      name: Linux/Windows/ARMv7/ARMv8
+      env: IMAGE=builder
+
+    - <<: *build
+      name: Mac OSX
+      env: IMAGE=builder-osx
