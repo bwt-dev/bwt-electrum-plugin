@@ -1,0 +1,3 @@
+[submodule "bwt"]
+	path = bwt
+	url = https://github.com/shesek/bwt
