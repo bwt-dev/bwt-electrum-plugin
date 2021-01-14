@@ -29,7 +29,12 @@ build() {
   cp $BWT_BIN_DIST/bwt-$version-electrum_only-$platform/* $dest
   cp src/*.py $dest
   cp LICENSE README.md $dest
-  pack $name
+
+  # needs to be inside a directory with a name that matches the plugin module name for electrum to load it,
+  # create a temporary link to get tar/zip to pack it properly. (can also be done for tar.gz with --transform)
+  ln -s $name dist/bwt
+  pack $name bwt
+  rm dist/bwt
 }
 
 # pack tar.gz (for linux/mac/arm) or zip (for windows)
