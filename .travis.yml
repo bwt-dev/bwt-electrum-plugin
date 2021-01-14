@@ -18,7 +18,7 @@ jobs:
       - >
         rm -rf dist/*/ &&
         echo '-----BEGIN SHA256SUM-----' &&
-        (cd dist && sha256sum *) &&
+        (cd dist && sha256sum * | sort) &&
         echo
 
 
