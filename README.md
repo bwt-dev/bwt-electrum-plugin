@@ -2,9 +2,11 @@
 
 [![Build Status](https://travis-ci.org/bwt-dev/bwt-electrum-plugin.svg?branch=master)](https://travis-ci.org/bwt-dev/bwt-electrum-plugin)
 [![Latest release](https://img.shields.io/github/v/release/bwt-dev/bwt-electrum-plugin?color=orange)](https://github.com/bwt-dev/bwt-electrum-plugin/releases/tag/v0.2.1)
-[![Downloads](https://img.shields.io/github/downloads/bwt-dev/bwt-electrum-plugin/total.svg?color=blueviolet)](https://github.com/bwt-dev/bwt-electrum-plugin/releases)
+[![Downloads](https://img.shields.io/github/downloads/bwt-dev/bwt/total.svg?color=blueviolet)](https://github.com/bwt-dev/bwt-electrum-plugin/releases)
 [![MIT license](https://img.shields.io/github/license/bwt-dev/bwt-electrum-plugin.svg?color=yellow)](https://github.com/bwt-dev/bwt-electrum-plugin/blob/master/LICENSE)
 [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/bwt-dev/bwt#developing)
+
+<!-- TODO: change downloads counter back from main repo -->
 
 Electrum plugin for [Bitcoin Wallet Tracker](https://github.com/bwt-dev/bwt), a lightweight personal indexer for bitcoin wallets.
 
@@ -27,23 +29,23 @@ You will need to [run from tar.gz](https://github.com/spesmilo/electrum/#running
 use the Windows installer, install using a package manager,
 or [run from source](https://github.com/spesmilo/electrum/#development-version-git-clone).
 
-The plugin currently **supports watch-only wallets only** and [*cannot be used with hot wallets*](https://twitter.com/shesek/status/1275057901149667329). This is expected to eventually change.
+The plugin currently *supports watch-only wallets only* and [*cannot be used with hot wallets*](https://twitter.com/shesek/status/1275057901149667329). This is expected to eventually change.
 For now, you can use the plugin with hardware wallets or with an offline Electrum setup.
 For hot wallets, you will need to [setup a standalone server](https://github.com/bwt-dev/bwt#setting-up-bwt)
 instead of using the plugin.
 
 ## Installation
 
-1. Install and sync Bitcoin Core. If you're using QT, make sure to set `server=1` in your config file.
+1. Install and sync Bitcoin Core. If you're using QT, set `server=1` in your `bitcoin.conf` file.
 
-   > It is recommended, but not required, to create a separate bitcoind wallet with `createwallet <name> true`.
-2. Download the bwt plugin from the [releases page](https://github.com/bwt-dev/bwt-electrum-plugin/releases) and verify the signature (see below).
+   > It is recommended, but not required, to create a separate bitcoind wallet with `createwallet <name> true true`.
 
-3. Unpack the `bwt` directory into your `electrum/plugins` directory.
+2. Download the bwt plugin from the [releases page](https://github.com/bwt-dev/bwt-electrum-plugin/releases),
+   verify the signature (see below) and unpack the `bwt` directory into your `electrum/plugins` directory.
 
-   > You can find the location if your plugins directory by running `electrum.plugins.__path__` in the Electrum console tab.
+   > You can find the location of your plugins directory by running `electrum.plugins.__path__` in the Electrum console tab.
 
-4. Restart Electrum, open `Tools -> Plugins`, enable `bwt`, click `Connect to bitcoind`, configure your Bitcoin Core RPC details, and click `Save & Connect`. That's it!
+3. Restart Electrum, open `Tools -> Plugins`, enable `bwt`, click `Connect to bitcoind`, configure your Bitcoin Core RPC details, and click `Save & Connect`. That's it!
 
 On the first run, rescanning for historical transactions from genesis may take up to 2-3 hours. To speed this up, set the rescan date to when
 the wallet was created (or disable rescanning entirely for new wallets). If your node is pruned, the rescan date has to be within
@@ -61,7 +63,7 @@ the [PGP WoT](http://keys.gnupg.net/pks/lookup?op=vindex&fingerprint=on&search=0
 [twitter](https://twitter.com/shesek),
 [keybase](https://keybase.io/nadav),
 [hacker news](https://news.ycombinator.com/user?id=nadaviv)
-and [this video presentation](https://youtu.be/SXJaN2T3M10?t=4) (bottom of slide).
+and [this video presentation](https://youtu.be/SXJaN2T3M10?t=4).
 
 
 ```bash
