@@ -75,7 +75,7 @@ class BwtPlugin(BasePlugin):
             args.extend([ '--unix-listener-path', self.socket_path ])
 
         for wallet in self.wallets:
-            if wallet.m is None:
+            if not hasattr(wallet, 'm'):
                 xpub = wallet.get_master_public_key()
                 args.extend([ '--xpub', xpub ])
             else: # Multisig wallet
