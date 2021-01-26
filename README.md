@@ -24,10 +24,9 @@ The plugin supports Electrum v3 and v4. It is available for Linux, Mac, Windows 
 Bitcoin Core v0.19+ is recommended, but it can work (not as well) with v0.17+. `txindex` is not required.
 Pruning is supported, but you can only scan for transactions in the non-pruned history.
 
-It is not possible to install external plugins with the Electrum AppImage or standalone Windows executable.
-You will need to [run from tar.gz](https://github.com/spesmilo/electrum/#running-from-targz) on Linux,
-use the Windows installer, install using a package manager,
-or [run from source](https://github.com/spesmilo/electrum/#development-version-git-clone).
+The plugin can be used with the Electrum AppImage (see special instructions below), Linux package manager installations,
+the Windows installer, the `tar.gz` package, or from source.
+It cannot be used with the standalone Windows executable.
 
 The plugin currently *supports watch-only wallets only* and [*cannot be used with hot wallets*](https://twitter.com/shesek/status/1275057901149667329). This is expected to eventually change.
 For now, you can use the plugin with hardware wallets or with an offline Electrum setup.
@@ -53,6 +52,32 @@ the range of non-pruned blocks.
 
 The plugin automatically configures Electrum with `oneserver` (to avoid connecting to public servers) and `skipmerklecheck` (necessary for [pruning](https://github.com/bwt-dev/bwt#pruning)).
 To avoid connecting to public servers while setting up the plugin, make sure the "auto connect" feature is disabled or run Electrum with `--offline` until everything is ready.
+
+#### With the Electrum AppImage
+
+If you're using the Electrum AppImage, you will have to extract it to a directory first and copy the bwt plugin directory into it.
+This can be done as follows:
+
+```bash
+# Extract AppImage (to a subdirectory named 'squashfs-root')
+$ ./electrum-x.y.z-x86_64.AppImage --appimage-extract
+
+# Copy the bwt plugin directory
+$ cp -r /path/to/bwt squashfs-root/usr/lib/python3.7/site-packages/electrum/plugins/
+
+# Start Electrum
+./squashfs-root/AppRun
+```
+
+Or using the `run-appimage.sh` utility script available within the plugin directory (which does the same):
+
+```bash
+# Extract the AppImage, copy bwt and start Electrum
+./bwt/run-appimage.sh ./electrum-x.y.z-x86_64.AppImage
+
+# Can also forward arguments
+./bwt/run-appimage.sh ./electrum-x.y.z-x86_64.AppImage --offline
+```
 
 #### Verifying the signature
 

@@ -27,7 +27,7 @@ build() {
 
   mkdir -p $dest
   cp $BWT_BIN_DIST/bwt-$version-electrum_only-$platform/* $dest
-  cp src/*.py $dest
+  cp src/*.py src/run-appimage.sh $dest
   cp LICENSE README.md $dest
 
   # needs to be inside a directory with a name that matches the plugin module name for electrum to load it,

@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Add instructions and utility script for using the Electrum AppImage (#2)
+
 - Fix multi-signature wallet detection
 
 ## 0.2.1 - 2021-01-14
