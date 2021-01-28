@@ -15,7 +15,16 @@ an embedded bwt Electrum server within the Electrum wallet itself.
 
 Support development: [⛓️ on-chain or ⚡ lightning via BTCPay](https://btcpay.shesek.info/)
 
-![Screenshot of bwt integrated into Electrum](doc/electrum-plugin.png)
+![Screenshot of bwt integrated into Electrum](https://raw.githubusercontent.com/bwt-dev/bwt-electrum-plugin/master/doc/electrum-plugin.png)
+
+- [Compatibility](#compatibility)
+- [Installation](#installation)
+  - [With the Electrum AppImage](#with-the-electrum-appimage)
+  - [Verifying the signature](#verifying-the-signature)
+- [Welcome banner](#welcome-banner)
+- [Building from source](#building-from-source)
+- [Reproducible builds](#reproducible-builds)
+- [License](#license)
 
 ## Compatibility
 
@@ -66,17 +75,17 @@ $ ./electrum-x.y.z-x86_64.AppImage --appimage-extract
 $ cp -r /path/to/bwt squashfs-root/usr/lib/python3.7/site-packages/electrum/plugins/
 
 # Start Electrum
-./squashfs-root/AppRun
+$ ./squashfs-root/AppRun
 ```
 
 Or using the `run-appimage.sh` utility script available within the plugin directory (which does the same):
 
 ```bash
 # Extract the AppImage, copy bwt and start Electrum
-./bwt/run-appimage.sh ./electrum-x.y.z-x86_64.AppImage
+$ ./bwt/run-appimage.sh ./electrum-x.y.z-x86_64.AppImage
 
 # Can also forward arguments
-./bwt/run-appimage.sh ./electrum-x.y.z-x86_64.AppImage --offline
+$ ./bwt/run-appimage.sh ./electrum-x.y.z-x86_64.AppImage --offline
 ```
 
 #### Verifying the signature
@@ -104,6 +113,13 @@ $ wget -qO - https://github.com/bwt-dev/bwt-electrum-plugin/releases/download/v0
 ```
 
 The signature verification should show `Good signature from "Nadav Ivgi <nadav@shesek.info>" ... Primary key fingerprint: FCF1 9B67 ...` and `bwt-electrum-plugin-0.2.1-x86_64-linux.tar.gz: OK`.
+
+## Welcome banner
+
+The bwt Electrum server provides a welcome banner with information about your node and the Bitcoin network.
+You can view it by opening the Console tab.
+
+![Screenshot of the bwt welcome banner](https://raw.githubusercontent.com/bwt-dev/bwt-electrum-plugin/master/doc/electrum-banner.png)
 
 ## Building from source
 
