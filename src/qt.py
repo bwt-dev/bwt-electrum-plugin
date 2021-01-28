@@ -3,7 +3,7 @@ from xml.sax.saxutils import escape
 
 from PyQt5.QtCore import Qt, QObject, pyqtSignal
 from PyQt5.QtGui import QTextOption
-from PyQt5.QtWidgets import QSizePolicy, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QTextEdit, QComboBox, QPushButton, QFormLayout
+from PyQt5.QtWidgets import QSizePolicy, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QTextEdit, QComboBox, QPushButton, QFormLayout, QCheckBox
 
 from electrum.i18n import _
 from electrum.plugin import hook
@@ -66,7 +66,11 @@ class Plugin(BwtPlugin, QObject):
         form.addRow('', helptext(_('Used for reading the cookie file. Ignored if auth is set.'), False))
 
         wallet_e = input(self.bitcoind_wallet, 150)
-        form.addRow(_('Wallet:'), wallet_e)
+        wallet_ch = checkbox('Create if missing', self.create_wallet_if_missing)
+        wallet_hbox = QHBoxLayout()
+        wallet_hbox.addWidget(wallet_e)
+        wallet_hbox.addWidget(wallet_ch)
+        form.addRow(_('Wallet:'), wallet_hbox)
         form.addRow('', helptext(_('For use with multi-wallet. Leave blank to use the default wallet.'), False))
 
 
@@ -115,6 +119,7 @@ class Plugin(BwtPlugin, QObject):
             self.bitcoind_dir = str(dir_e.text())
             self.bitcoind_auth = str(auth_e.text())
             self.bitcoind_wallet = str(wallet_e.text())
+            self.create_wallet_if_missing = wallet_ch.isChecked()
             self.rescan_since = get_rescan_value(rescan_c, rescan_e)
             self.custom_opt = str(custom_opt_e.text())
             self.verbose = verbose_c.currentIndex()
@@ -124,6 +129,7 @@ class Plugin(BwtPlugin, QObject):
             self.config.set_key('bwt_bitcoind_dir', self.bitcoind_dir)
             self.config.set_key('bwt_bitcoind_auth', self.bitcoind_auth)
             self.config.set_key('bwt_bitcoind_wallet', self.bitcoind_wallet)
+            self.config.set_key('bwt_create_wallet_if_missing', self.create_wallet_if_missing)
             self.config.set_key('bwt_rescan_since', self.rescan_since)
             self.config.set_key('bwt_custom_opt', self.custom_opt)
             self.config.set_key('bwt_verbose', self.verbose)
@@ -178,6 +184,11 @@ def helptext(text, wrap=True):
     l.setWordWrap(wrap)
     l.setStyleSheet('QLabel { color: #aaa; font-size: 0.9em }')
     return l
+
+def checkbox(text, selected=False):
+    ch = QCheckBox(text)
+    ch.setChecked(selected)
+    return ch
 
 def show_log(log_t, level, pkg, msg):
     scrollbar = log_t.verticalScrollBar()

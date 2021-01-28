@@ -36,8 +36,9 @@ class BwtPlugin(BasePlugin):
         self.enabled = config.get('bwt_enabled')
         self.bitcoind_url = config.get('bwt_bitcoind_url', default_bitcoind_url())
         self.bitcoind_dir = config.get('bwt_bitcoind_dir', default_bitcoind_dir())
-        self.bitcoind_wallet = config.get('bwt_bitcoind_wallet')
         self.bitcoind_auth = config.get('bwt_bitcoind_auth', config.get('bwt_bitcoind_cred'))
+        self.bitcoind_wallet = config.get('bwt_bitcoind_wallet')
+        self.create_wallet_if_missing = config.get('bwt_create_wallet_if_missing', False)
         self.rescan_since = config.get('bwt_rescan_since', 'all')
         self.custom_opt = config.get('bwt_custom_opt')
         self.socket_path = config.get('bwt_socket_path', default_socket_path())
@@ -70,6 +71,9 @@ class BwtPlugin(BasePlugin):
 
         if self.bitcoind_wallet:
             args.extend([ '--bitcoind-wallet', self.bitcoind_wallet ])
+
+        if self.create_wallet_if_missing:
+            args.extend([ '--create-wallet-if-missing' ])
 
         if self.socket_path:
             args.extend([ '--unix-listener-path', self.socket_path ])

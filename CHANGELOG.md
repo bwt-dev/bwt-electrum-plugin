@@ -2,6 +2,8 @@
 
 - Add instructions and utility script for using the Electrum AppImage (#2)
 
+- Add "Create wallet if missing" option to the GUI (https://github.com/bwt-dev/bwt/issues/76)
+
 - Fix multi-signature wallet detection
 
 ## 0.2.1 - 2021-01-14
