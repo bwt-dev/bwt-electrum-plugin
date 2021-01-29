@@ -1,4 +1,4 @@
-## Unreleased
+## 0.2.2 - 2021-01-29
 
 - Add instructions and utility script for using the Electrum AppImage (#2)
 

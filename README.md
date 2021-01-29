@@ -1,7 +1,7 @@
 # Bitcoin Wallet Tracker - Electrum Plugin
 
 [![Build Status](https://travis-ci.org/bwt-dev/bwt-electrum-plugin.svg?branch=master)](https://travis-ci.org/bwt-dev/bwt-electrum-plugin)
-[![Latest release](https://img.shields.io/github/v/release/bwt-dev/bwt-electrum-plugin?color=orange)](https://github.com/bwt-dev/bwt-electrum-plugin/releases/tag/v0.2.1)
+[![Latest release](https://img.shields.io/github/v/release/bwt-dev/bwt-electrum-plugin?color=orange)](https://github.com/bwt-dev/bwt-electrum-plugin/releases/tag/v0.2.2)
 [![Downloads](https://img.shields.io/github/downloads/bwt-dev/bwt/total.svg?color=blueviolet)](https://github.com/bwt-dev/bwt-electrum-plugin/releases)
 [![MIT license](https://img.shields.io/github/license/bwt-dev/bwt-electrum-plugin.svg?color=yellow)](https://github.com/bwt-dev/bwt-electrum-plugin/blob/master/LICENSE)
 [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/bwt-dev/bwt#developing)
@@ -102,17 +102,17 @@ and [this video presentation](https://youtu.be/SXJaN2T3M10?t=4).
 
 ```bash
 # Download plugin (change x86_64-linux to your platform)
-$ wget https://github.com/bwt-dev/bwt-electrum-plugin/releases/download/v0.2.1/bwt-electrum-plugin-0.2.1-x86_64-linux.tar.gz
+$ wget https://github.com/bwt-dev/bwt-electrum-plugin/releases/download/v0.2.2/bwt-electrum-plugin-0.2.2-x86_64-linux.tar.gz
 
 # Fetch public key
 $ gpg --keyserver keyserver.ubuntu.com --recv-keys FCF19B67866562F08A43AAD681F6104CD0F150FC
 
 # Verify signature
-$ wget -qO - https://github.com/bwt-dev/bwt-electrum-plugin/releases/download/v0.2.1/SHA256SUMS.asc \
+$ wget -qO - https://github.com/bwt-dev/bwt-electrum-plugin/releases/download/v0.2.2/SHA256SUMS.asc \
   | gpg --decrypt - | grep x86_64-linux | sha256sum -c -
 ```
 
-The signature verification should show `Good signature from "Nadav Ivgi <nadav@shesek.info>" ... Primary key fingerprint: FCF1 9B67 ...` and `bwt-electrum-plugin-0.2.1-x86_64-linux.tar.gz: OK`.
+The signature verification should show `Good signature from "Nadav Ivgi <nadav@shesek.info>" ... Primary key fingerprint: FCF1 9B67 ...` and `bwt-electrum-plugin-0.2.2-x86_64-linux.tar.gz: OK`.
 
 ## Welcome banner
 
