@@ -1,3 +1,11 @@
+## 0.2.4 - 2021-03-25
+
+- Update to [bwt v0.2.4](https://github.com/bwt-dev/bwt/releases/tag/v0.2.4)
+
+## 0.2.3 - 2021-03-17
+
+- Update to [bwt v0.2.3](https://github.com/bwt-dev/bwt/releases/tag/v0.2.3)
+
 ## 0.2.2 - 2021-01-29
 
 - Add instructions and utility script for using the Electrum AppImage (#2)
