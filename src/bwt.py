@@ -4,6 +4,7 @@ import platform
 import socket
 import os
 import re
+import shlex
 
 from electrum import constants
 from electrum.bip32 import BIP32Node
@@ -90,8 +91,7 @@ class BwtPlugin(BasePlugin):
             args.append('-v')
 
         if self.custom_opt:
-            # XXX this doesn't support arguments with spaces. thankfully bwt doesn't currently have any.
-            args.extend(self.custom_opt.split(' '))
+            args.extend(shlex.split(self.custom_opt))
 
         self.set_config()
 

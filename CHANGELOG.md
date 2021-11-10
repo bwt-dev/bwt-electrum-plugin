@@ -1,3 +1,7 @@
+## Unreleased
+
+- Support custom CLI arguments with spaces (#4)
+
 ## 0.2.4 - 2021-03-25
 
 - Update to [bwt v0.2.4](https://github.com/bwt-dev/bwt/releases/tag/v0.2.4)
